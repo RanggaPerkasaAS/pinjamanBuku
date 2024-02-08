@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test Technical Eigen",
+        "description": "Dokumentasi API Eigen menggunakan Swagger",
+        "version": "1.0"
+    },
+    "servers":[
+        {
+            "url": "http://localhost:8000/api",
+            "description": "API"
+        }
+    ],
+    "tags":[
+        {
+            "name": "Books",
+            "description": "Books"
+        },
+        {
+            "name": "Member",
+            "description": "Member"
+        },
+        {
+            "name": "Pinjam",
+            "description": "Peminjaman dan Pengembalian"
+        }
+    ],
+    "paths":{
+        "/addBook":{
+            "post":{
+                "tags":["Books"],
+                "summary": "add book",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "code":{
+                                        "type":"string",
+                                        "format": "string"
+                                    },
+                                    "title":{
+                                        "type":"string",
+                                        "format": "string"
+                                    },
+                                    "author":{
+                                        "type":"string",
+                                        "format": "string"
+                                    },
+                                    "stock":{
+                                        "type":"integer",
+                                        "format": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/getExistBook":{
+            "get":{
+                "tags":["Books"],
+                "summary":"Get buku yang masih ada stock",
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/getAllBook":{
+            "get":{
+                "tags":["Books"],
+                "summary":"Get semua buku ",
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/addMember":{
+            "post":{
+                "tags":["Member"],
+                "summary": "add Member",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "code":{
+                                        "type":"string",
+                                        "format": "string"
+                                    },
+                                    "name":{
+                                        "type":"string",
+                                        "format": "string"
+                                    },
+                                    "penalty_status":{
+                                        "type":"boolean",
+                                        "format": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/getAllMember":{
+            "get":{
+                "tags":["Member"],
+                "summary":"Get All member",
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/getMember":{
+            "get":{
+                "tags":["Member"],
+                "summary":"Get member dan jumlah barang yang dipinjam",
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/pinjam/{id_member}":{
+            "post":{
+                "tags":["Pinjam"],
+                "summary": "API untuk pinjam buku",
+                "parameters":[
+                    {
+                        "in": "path",
+                        "name": "id_member",
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "id_book":{
+                                        "type":"integer",
+                                        "format": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        },
+        "/kembali/{id_member}":{
+            "post":{
+                "tags":["Pinjam"],
+                "summary": "API untuk Pengembalian buku",
+                "parameters":[
+                    {
+                        "in": "path",
+                        "name": "id_member",
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "id_book":{
+                                        "type":"integer",
+                                        "format": "integer"
+                                    },
+                                    "return_date":{
+                                        "type":"string",
+                                        "format":"date"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"sukses"
+                    }
+                }
+            }
+        }
+    }
+}
